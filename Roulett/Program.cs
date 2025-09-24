@@ -11,20 +11,29 @@ while (true)
     {
 
         Console.WriteLine($"You have {cash}$");
-        int amounttobet = int.MaxValue;
+        int amounttobet = 0;
+        string inputbet;
+        bool invalidinput = false;
 
-        while (amounttobet > cash)
+        while (!invalidinput)
         {
             Console.WriteLine("How much do you whant to bet");
-
-            amounttobet = Convert.ToInt32(Console.ReadLine());
+            inputbet = Console.ReadLine();
+            amounttobet = Convert.ToInt32(inputbet);
 
             if (amounttobet > cash)
             {
-                Console.WriteLine("nope");
+                Console.WriteLine("You aint got that cash buddy");
             }
-
-            
+            else
+            {
+                if (amounttobet < 0)
+                {
+                    Console.WriteLine("Thats minus cash gang");
+                }
+                else { invalidinput = true; }
+            }
+           
         }
 
         
@@ -47,6 +56,7 @@ while (true)
 
         if (palystyle == "1")
         {
+            start:
             Console.WriteLine("Black or red?");
 
             Console.WriteLine("1:red");
@@ -57,6 +67,15 @@ while (true)
 
 
             int roulett = rand.Next(1, 3);
+
+            if (choice != 1 && choice != 2)
+            {
+                Console.WriteLine("Invalid input");
+                Thread.Sleep(2000);
+                Console.Clear();
+
+                goto start;
+            }
 
             if ((roulett == 1 && choice == 1) || (roulett == 2 && choice == 2))
             {
@@ -69,6 +88,25 @@ while (true)
             }
             else
             {
+                if (cash <= 0)
+                {
+                    Console.WriteLine("You lost all your cash");
+
+                    Console.WriteLine();
+
+                    if (roulett == 1)
+                    {
+                        Console.WriteLine("It was red");
+                    }
+                    else if (roulett == 2)
+                    {
+                        Console.WriteLine("It was black");
+                    }
+
+                    Thread.Sleep(2000);
+
+                    Environment.Exit(0);
+                }
                 Console.WriteLine("You lost bro");
                 Console.WriteLine(cash);
             }
@@ -106,6 +144,15 @@ while (true)
             }
             else
             {
+                if (cash <= 0)
+                {
+                    Console.WriteLine("You lost all your cash");
+
+                    Thread.Sleep(2000);
+
+                    Environment.Exit(0);
+                }
+
                 Console.WriteLine("You lost");
                 Console.WriteLine(cash);
 
