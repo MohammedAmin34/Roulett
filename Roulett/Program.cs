@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.Design;
 
 int cash = 500;
-
+Console.BackgroundColor = ConsoleColor.DarkBlue;
+Console.Clear();
 Console.Title = "Unibet";
-Console.WriteLine("Welcome to Unibet");
-
+Console.WriteLine("                                                           Unibet");
+Console.WriteLine();
 while (true)
 {
     try
@@ -17,7 +18,8 @@ while (true)
 
         while (!invalidinput)
         {
-            Console.WriteLine("How much do you whant to bet");
+            Console.WriteLine("How much do you want to bet");
+            Console.Write("[>] ");
             inputbet = Console.ReadLine();
             amounttobet = Convert.ToInt32(inputbet);
 
@@ -51,7 +53,7 @@ while (true)
         {
             Console.WriteLine(i + 1 + ":" + list[i]);
         }
-
+        Console.Write("[>] ");
         string palystyle = Console.ReadLine();
 
         if (palystyle == "1")
@@ -61,7 +63,7 @@ while (true)
 
             Console.WriteLine("1:red");
             Console.WriteLine("2:black");
-
+            Console.Write("[>] ");
             int choice = Convert.ToInt32(Console.ReadLine());
             Random rand = new Random();cash -= amounttobet;
 
@@ -124,7 +126,7 @@ while (true)
         {
             cash -= amounttobet;
             Console.WriteLine("Enter a number between 1-36");
-
+            Console.Write("[>] ");
             string input = Console.ReadLine();
 
             Random rand = new Random();
@@ -168,6 +170,7 @@ while (true)
         }
 
         Console.WriteLine("Continue playing?");
+        Console.Write("[>] ");
         string answer = Console.ReadLine().ToLower();
         if (answer != "yes" && answer != "y")
         {
