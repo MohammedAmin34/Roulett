@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Design;
 
 int cash = 500;
-Console.BackgroundColor = ConsoleColor.DarkBlue;
+Console.BackgroundColor = ConsoleColor.Black;
 Console.Clear();
 Console.Title = "Unibet";
 Console.WriteLine("                                                           Unibet");
@@ -125,11 +125,24 @@ while (true)
         else if (palystyle == "2")
         {
             cash -= amounttobet;
+            startbet:
             Console.WriteLine("Enter a number between 1-36");
             Console.Write("[>] ");
             string input = Console.ReadLine();
 
-            Random rand = new Random();
+            if (Convert.ToInt32(input) < 1)
+            {
+                Console.WriteLine("Input out of range!");
+
+                goto startbet;
+            } else if (Convert.ToInt32(input) > 36)
+            {
+                Console.WriteLine("Input out of range!");
+
+                goto startbet;
+            }
+
+                Random rand = new Random();
 
             int guess = Convert.ToInt32(input);
             int roulett = rand.Next(1, 36);
